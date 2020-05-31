@@ -1,20 +1,32 @@
 <%= form_for @review do |f| %>
 
-<p>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</p>
+  <% if @review.errors.any? %>
 
-<p>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-</p>
+    <div class="errors">
 
-<p>
-  <%= f.label :score %>
-  <%= f.number_field :score %>
-</p>
+      <% @review.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
 
-<%= f.submit "Save review" %>
+    </div>
+
+  <% end %>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= f.label :score %>
+    <%= f.number_field :score %>
+  </p>
+
+  <%= f.submit "Save review" %>
 
 <% end %>
